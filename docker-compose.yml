@@ -1,0 +1,18 @@
+services:
+   pattern-lab:
+      container_name: pattern-lab-basic-setup__dev
+      build:
+         context: .
+         dockerfile: ./docker/pattern-lab/dockerfile
+      image: oktarintentakel/pattern-lab-basic-setup
+      volumes:
+         - ./project:/project
+      working_dir: /project
+      ports:
+         - 3000:3000
+         - 3001:3001
+      environment:
+         - TERM=xterm-256color
+         - LANG=C.UTF-8
+         - ROARR_LOG=true
+      command: bash -c "yarn run start | yarn run roarr pretty-print"

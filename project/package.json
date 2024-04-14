@@ -1,0 +1,45 @@
+{
+	"name" : "pattern-lab-basic-setup",
+	"description" : "use this project as a starting point for new pattern lab projects",
+	"author" : "Sebastian Schlapkohl",
+	"version" : "1.0.0",
+	"private" : true,
+
+	"type" : "module",
+
+	"browserslist" : [
+		"Chrome >= 90",
+		"ChromeAndroid >= 90",
+		"Android >= 90",
+		"Edge >= 90",
+		"Safari >= 14",
+		"iOS >= 14",
+		"Firefox >= 90",
+		"Opera >= 80"
+	],
+
+	"scripts" : {
+		"start" : "node index.js --task=start"
+	},
+
+	"devDependencies" : {
+		"@pattern-lab/cli" : "~6.1.0",
+		"@pattern-lab/core" : "~6.1.0",
+		"@pattern-lab/engine-twig-php" : "~6.1.0",
+		"@pattern-lab/uikit-workshop" : "~6.1.0",
+		"@roarr/cli" : "~5.12.4",
+		"browser-sync": "~3.0.2",
+		"browserslist" : "~4.23.0",
+		"browserslist-to-esbuild" : "~2.1.1",
+		"compression" : "~1.7.4",
+		"core-js" : "~3.36.1",
+		"del" : "~7.1.0",
+		"esbuild" : "~0.20.2",
+		"outdent" : "~0.8.0",
+		"postcss" : "~8.4.38",
+		"roarr" : "~7.21.1",
+		"sass" : "~1.75.0",
+		"tasuku" : "~2.0.1",
+		"yargs" : "~17.7.2"
+	}
+}
