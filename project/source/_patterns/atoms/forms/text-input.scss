@@ -1,0 +1,12 @@
+/*
+	~ATOM TEXT INPUT~
+*/
+
+$__ENVIRONMENT__: 'dev' !default;
+
+.atom-text-input {
+	// nothing yet
+	&:after {
+		content: $__ENVIRONMENT__;
+	}
+}

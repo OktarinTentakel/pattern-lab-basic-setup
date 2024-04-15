@@ -19,7 +19,14 @@
 	],
 
 	"scripts" : {
-		"start" : "node index.js --task=start"
+		"start" : "nodemon index.js --environment=$ENVIRONMENT --task=start"
+	},
+
+	"nodemonConfig": {
+		"watch" : [
+			"index.js",
+			"patternlab-config.json"
+		]
 	},
 
 	"devDependencies" : {
@@ -35,11 +42,13 @@
 		"core-js" : "~3.36.1",
 		"del" : "~7.1.0",
 		"esbuild" : "~0.20.2",
+		"nodemon" : "~3.1.0",
 		"outdent" : "~0.8.0",
 		"postcss" : "~8.4.38",
 		"roarr" : "~7.21.1",
 		"sass" : "~1.75.0",
 		"tasuku" : "~2.0.1",
+		"watcher" : "~2.3.1",
 		"yargs" : "~17.7.2"
 	}
 }

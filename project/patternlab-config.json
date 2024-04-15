@@ -56,9 +56,7 @@
 				"viewall" : "views/viewall.mustache"
 			},
 			"images" : "./source/images",
-			"fonts" : "./source/fonts",
-			"app" : "./source/app",
-			"styles" : "./source/styles"
+			"fonts" : "./source/fonts"
 		},
 		"public" : {
 			"root" : "public/",
@@ -68,6 +66,10 @@
 			"styleguide" : "public/styleguide/",
 			"images" : "public/images",
 			"fonts" : "public/fonts"
+		},
+		"includes" : {
+			"app" : "./source/app",
+			"styles" : "./source/styles"
 		}
 	},
 	"patternExtension" : "twig",
@@ -81,7 +83,7 @@
 	"patternExportPatternPartials" : [],
 	"patternExportPreserveDirectoryStructure" : true,
 	"patternExportRaw" : false,
-	"patternMergeVariantArrays" : true,
+	"patternMergeVariantArrays" : false,
 	"renderFlatPatternsOnViewAllPages" : false,
 	"serverOptions" : {
 		"wait" : 1000

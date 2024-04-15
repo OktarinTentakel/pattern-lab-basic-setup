@@ -8,7 +8,7 @@ const
 class MoleculeField {
 
 	constructor(app, element){
-console.log(NAME, app, element);
+console.log(NAME, app, element, __ENVIRONMENT__);
 	}
 
 }
