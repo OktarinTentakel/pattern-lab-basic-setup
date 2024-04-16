@@ -1,3 +1,6 @@
 <label
 	class="molecule-field"
->test</label>
+>
+	{{ label }}{% pattern 'atoms/text-input' %}
+	{% if image %}<img src="{{ image.sources.small }}"/>{% endif %}
+</label>

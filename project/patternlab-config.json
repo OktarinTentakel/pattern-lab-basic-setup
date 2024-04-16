@@ -1,6 +1,7 @@
 {
 	"cacheBust" : true,
-	"cleanPublic" : true,
+	"//@cleanPublic" : "must stay false, incremental compilation mode is handled by index.js",
+	"cleanPublic" : false,
 	"defaultPattern" : "all",
 	"defaultShowPatternInfo" : false,
 	"ishControlsHide" : {
@@ -34,20 +35,22 @@
 			3840
 		]
 	},
-	"logLevel" : "info",
+	"//@logLevel" : "set to quiet, but implemented in index.js, where we route messages to the project's central logger",
+	"logLevel" : "quiet",
 	"outputFileSuffixes" : {
 		"rendered" : ".rendered",
 		"rawTemplate" : "",
 		"markupOnly" : ".markup-only"
 	},
 	"paths" : {
+		"root" : "./",
 		"source" : {
 			"root" : "./source/",
 			"patterns" : "./source/_patterns/",
 			"data" : "./source/_data/",
 			"meta" : "./source/_meta/",
 			"annotations" : "./source/_annotations/",
-			"styleguide" : "dist/",
+			"styleguide" : "./dist/",
 			"patternlabFiles" : {
 				"general-header" : "views/partials/general-header.mustache",
 				"general-footer" : "views/partials/general-footer.mustache",
@@ -55,21 +58,21 @@
 				"patternSectionSubgroup" : "views/partials/patternSectionSubgroup.mustache",
 				"viewall" : "views/viewall.mustache"
 			},
-			"images" : "./source/images",
-			"fonts" : "./source/fonts"
+			"images" : "./source/images/",
+			"fonts" : "./source/fonts/"
 		},
 		"public" : {
-			"root" : "public/",
-			"patterns" : "public/patterns/",
-			"data" : "public/styleguide/data/",
-			"annotations" : "public/annotations/",
-			"styleguide" : "public/styleguide/",
-			"images" : "public/images",
-			"fonts" : "public/fonts"
+			"root" : "./public/",
+			"patterns" : "./public/patterns/",
+			"data" : "./public/styleguide/data/",
+			"annotations" : "./public/annotations/",
+			"styleguide" : "./public/styleguide/",
+			"images" : "./public/img/",
+			"fonts" : "./public/fnt/"
 		},
 		"includes" : {
-			"app" : "./source/app",
-			"styles" : "./source/styles"
+			"app" : "./source/app/",
+			"styles" : "./source/styles/"
 		}
 	},
 	"patternExtension" : "twig",
@@ -175,5 +178,47 @@
 		}
 	],
 	"patternWrapClassesEnable" : false,
-	"patternWrapClassesKey" : []
+	"patternWrapClassesKey" : [],
+
+
+	"//@additions" : "###[ ADDITIONS ]#################################################################################",
+
+	"additions" : {
+		"dummyImages" : {
+			"baseUrl" : "https://dummyimage.com/{width}x{height}/{background}/{foreground}.{extension}&text={text}",
+			"extension" : "png",
+			"colors" : {
+				"background" : {
+					"small" : "a8a9a9",
+					"medium" : "c0c1c1",
+					"large" : "d8d9d9"
+				},
+				"foreground" : {
+					"small" : "e0e0e0",
+					"medium" : "666666",
+					"large" : "666666"
+				}
+			},
+			"configs" : [
+				{
+					"name" : "asset",
+					"small" : {
+						"width" : 100,
+						"height" : 100,
+						"text" : "100 x 100 - 1:1"
+					},
+					"medium" : {
+						"width" : 400,
+						"height" : 300,
+						"text" : "400 x 300 - 4:3"
+					},
+					"large" : {
+						"width" : 1600,
+						"ar" : "16/9",
+						"text" : "1600 x 900 - 16:9"
+					}
+				}
+			]
+		}
+	}
 }

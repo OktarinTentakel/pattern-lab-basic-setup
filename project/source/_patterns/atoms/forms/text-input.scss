@@ -5,7 +5,7 @@
 $__ENVIRONMENT__: 'dev' !default;
 
 .atom-text-input {
-	// nothing yet
+	user-select: none;
 	&:after {
 		content: $__ENVIRONMENT__;
 	}

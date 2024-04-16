@@ -4,6 +4,7 @@
 	"author" : "Sebastian Schlapkohl",
 	"version" : "1.0.0",
 	"private" : true,
+	"license" : "MIT",
 
 	"type" : "module",
 
@@ -19,13 +20,16 @@
 	],
 
 	"scripts" : {
-		"start" : "nodemon index.js --environment=$ENVIRONMENT --task=start"
+		"start" : "nodemon index.js --task=start --project=$PROJECT --environment=$ENVIRONMENT --host=$HOST --port=$PORT -protocol=$PROTOCOL --devdomain=$DEVDOMAIN | yarn run roarr pretty-print",
+		"build" : "node index.js --task=build --project=$PROJECT --environment=$ENVIRONMENT | yarn run roarr pretty-print",
+		"download_dummyimages" : "node index.js --task=download_dummyimages --project=$PROJECT --environment=$ENVIRONMENT | yarn run roarr pretty-print"
 	},
 
 	"nodemonConfig": {
 		"watch" : [
 			"index.js",
-			"patternlab-config.json"
+			"patternlab-config.json",
+			"alter-twig.php"
 		]
 	},
 
@@ -35,6 +39,7 @@
 		"@pattern-lab/engine-twig-php" : "~6.1.0",
 		"@pattern-lab/uikit-workshop" : "~6.1.0",
 		"@roarr/cli" : "~5.12.4",
+		"autoprefixer" : "~10.4.19",
 		"browser-sync": "~3.0.2",
 		"browserslist" : "~4.23.0",
 		"browserslist-to-esbuild" : "~2.1.1",
