@@ -1,6 +1,7 @@
 <label
-	class="molecule-field"
+	class="molecule-field{{ style_modifier() }}"
 >
-	{{ label }}{% pattern 'atoms/text-input' %}
-	{% if image %}<img src="{{ image.sources.small }}"/>{% endif %}
+	<span class="text">{{ label }}</span>
+	{% pattern 'atoms/text-input' with {__style_modifier : 'input'} %}
+	{% if image %}<img class="image" alt="image" src="{{ image.sources.small }}"/>{% endif %}
 </label>

@@ -302,12 +302,12 @@ or manually
     "image" : {
         "alt": "asset",
         "image": {
-			"small": "/img/dummy-images/asset-small.png",
-			"small2x": "/img/dummy-images/asset-small@2x.png",
-			"medium": "/img/dummy-images/asset-medium.png",
-			"medium2x": "/img/dummy-images/asset-medium@2x.png",
-			"large": "/img/dummy-images/asset-large.png",
-			"large2x": "/img/dummy-images/asset-large@2x.png"
+            "small": "/img/dummy-images/asset-small.png",
+            "small2x": "/img/dummy-images/asset-small@2x.png",
+            "medium": "/img/dummy-images/asset-medium.png",
+            "medium2x": "/img/dummy-images/asset-medium@2x.png",
+            "large": "/img/dummy-images/asset-large.png",
+            "large2x": "/img/dummy-images/asset-large@2x.png"
         }
     }
 }

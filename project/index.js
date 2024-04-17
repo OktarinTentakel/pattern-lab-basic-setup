@@ -19,6 +19,10 @@ import autoprefixer from 'autoprefixer';
 import browserslistToEsbuild from 'browserslist-to-esbuild';
 import Watcher from 'watcher';
 
+
+
+//###[ CONFIGS ]########################################################################################################
+
 import patternLabConfig from './patternlab-config.json' assert {type : 'json'};
 
 
@@ -434,7 +438,7 @@ function watchApp(){
 	return task('watching app files', async({setStatus, setOutput}) => {
 		setStatus('watching');
 
-		appWatcher = new Watcher (
+		appWatcher = new Watcher(
 			JS_INCLUDE_PATHS,
 			WATCHER_CONFIG,
 			(e, targetPath) => {

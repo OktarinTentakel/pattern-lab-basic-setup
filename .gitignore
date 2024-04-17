@@ -3,3 +3,4 @@
 bin/local/
 node_modules/
 public/
+dependencyGraph.json

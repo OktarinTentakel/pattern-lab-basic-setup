@@ -2,11 +2,12 @@
 	~ATOM TEXT INPUT~
 */
 
-$__ENVIRONMENT__: 'dev' !default;
-
 .atom-text-input {
-	user-select: none;
-	&:after {
-		content: $__ENVIRONMENT__;
+	width: 100%;
+
+
+
+	.text {
+		user-select: none;
 	}
 }

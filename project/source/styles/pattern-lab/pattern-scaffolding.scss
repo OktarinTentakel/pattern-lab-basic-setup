@@ -1,6 +1,9 @@
 $__ENVIRONMENT__: 'dev' !default;
 
 @if( $__ENVIRONMENT__ != 'prod' ){
+
+	//###[ BROWSER SYNC ]###############################################################################################
+
 	@keyframes __by_notify__-enter {
 		0% {
 			opacity: 0;
@@ -58,6 +61,100 @@ $__ENVIRONMENT__: 'dev' !default;
 
 		&:after {
 			content: '\00a0\26A1';
+		}
+	}
+
+
+
+	//###[ PATTERN LAB ]################################################################################################
+
+	.sg-swatch {
+		display: flex;
+		justify-content: center;
+		align-items: center;
+
+		height: 6rem;
+
+		border: 1px solid lightgrey;
+		border-radius: 5px;
+		margin-bottom: 0.3rem;
+	}
+
+
+
+	.sg-swatches-headline {
+		margin-bottom: 0.5rem;
+	}
+
+
+
+	.sg-label {
+		display: block;
+
+		margin-top: 1rem;
+
+		font-size: 1rem;
+		line-height: 1.5;
+		text-align: center;
+	}
+
+
+
+	.sg-colors,
+	.sg-icons {
+		> ul {
+			display: flex;
+			flex-wrap: wrap;
+
+			list-style: none !important;
+
+			padding: 0 !important;
+			margin: 0 !important;
+
+
+
+			li {
+				flex: auto;
+
+				min-width: 112px;
+				width: 112px;
+				max-width: 112px;
+
+				padding: 0.3rem;
+				border: 1px solid lightgrey;
+				border-radius: 8px;
+				margin: 0 0.5rem 0.5rem 0;
+			}
+		}
+	}
+
+	.sg-colors + .sg-colors,
+	.sg-icons + .sg-icons {
+		padding-top: 1rem !important;
+		margin-top: 0.5rem !important;
+		border-top: 1px solid rgba(lightgrey, 0.5);
+	}
+
+
+
+
+	.sg-grid-container {
+		max-width: 1200px;
+
+
+
+		&.has__negative-background {
+			background-color: black;
+		}
+	}
+
+
+
+	//###[ PATTERNS ]###################################################################################################
+
+	#molecules-field {
+		.sg-grid-container {
+			width: 50%;
 		}
 	}
 }
