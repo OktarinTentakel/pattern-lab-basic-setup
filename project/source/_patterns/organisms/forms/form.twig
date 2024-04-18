@@ -1,6 +1,12 @@
-{% pattern 'molecules/field' with {
-	label : 'test',
-	image : content_image('asset'),
-	__style_modifier__ : 'test'
-} %}
+{#
+	~ORGANISM FORM~
+#}
+
+<form class="organism-form{{ style_modifier() }}">
+	{% if image %}<img class="image" alt="image" src="{{ image.sources.small }}"/>{% endif %}
+
+	{% for field in fields %}
+		{% pattern 'molecules/form-field' with merge(field, {style_modifier : 'field'}) %}
+	{% endfor %}
+</form>
 

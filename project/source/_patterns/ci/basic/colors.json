@@ -1,0 +1,41 @@
+{
+	"colors" : {
+		"CI" : [
+			{
+				"name" : "Primary Green",
+				"class" : "primary-green",
+				"hex_code" : "#009036",
+				"rgb_code" : "0,144,54",
+				"comment" : "comment"
+			},
+			{
+				"name" : "Secondary Green",
+				"class" : "secondary-green",
+				"hex_code" : "#008237",
+				"rgb_code" : "0,130,55",
+				"comment" : "comment"
+			}
+		],
+		"Grey Scale" : [
+			{
+				"name" : "White",
+				"class" : "white",
+				"hex_code" : "#ffffff",
+				"rgb_code" : "255,255,255"
+			},
+			{
+				"name" : "Black",
+				"class" : "black",
+				"hex_code" : "#161b1c",
+				"rgb_code" : "22,27,28",
+				"comment" : "comment"
+			},
+			{
+				"name" : "Grey",
+				"class" : "grey",
+				"hex_code" : "#969899",
+				"rgb_code" : "150,152,153"
+			}
+		]
+	}
+}

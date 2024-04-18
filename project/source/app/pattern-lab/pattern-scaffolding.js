@@ -1,8 +1,21 @@
+//###[ SCAFFOLDING DEFINITIONS ]########################################################################################
+
+function scaffold(){
+	this.justAddPatternInfo('atoms-text-input', 'atom-text-input');
+
+	this.buildGridContainerFor('molecules-form-field', 'molecule-form-field:not(.negative)');
+	this.buildGridContainerFor('molecules-form-field', 'molecule-form-field.negative', 'negative');
+
+	this.buildSectionFor('organisms-form', 'organism-form', 'Form Section', true);
+}
+
+
+
 //###[ CONSTANTS ]######################################################################################################
 
 const
 	SECTION_CLASS = 'organism-section',
-	SECTION_WRAP = '<div class="organism-section"><div class="content"></div></div>',
+	SECTION_WRAP = '<section class="organism-section"><div class="content"></div></section>',
 	SECTION_HEADLINE = '<div class="headline-holder"><h2 class="atom-secondary-headline headline"></h2></div>',
 	GRID_CONTAINER_CLASS = 'sg-grid-container',
 	GRID_CONTAINER_WRAP = '<div class="sg-grid-container"><div class="content"></div></div>',
@@ -192,11 +205,4 @@ class PatternLabScaffolderSingleton {
 
 //###[ INIT ]###########################################################################################################
 
-export const PatternLabScaffolder = new PatternLabScaffolderSingleton(function(){
-	this.justAddPatternInfo('atoms-text-input', 'atom-text-input');
-
-	this.buildGridContainerFor('molecules-field', 'molecule-field:not(.negative)');
-	this.buildGridContainerFor('molecules-field', 'molecule-field.negative', 'negative');
-
-	this.buildSectionFor('organisms-form', 'organism-form', 'Form Section', true);
-});
+export const PatternLabScaffolder = new PatternLabScaffolderSingleton(scaffold);

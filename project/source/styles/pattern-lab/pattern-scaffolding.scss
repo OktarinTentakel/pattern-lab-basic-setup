@@ -1,4 +1,10 @@
+/*
+ * ~PATTERN SCAFFOLDING~
+ */
+
 $__ENVIRONMENT__: 'dev' !default;
+
+
 
 @if( $__ENVIRONMENT__ != 'prod' ){
 
@@ -152,7 +158,15 @@ $__ENVIRONMENT__: 'dev' !default;
 
 	//###[ PATTERNS ]###################################################################################################
 
-	#molecules-field {
+	[id^="atoms-text-input"] {
+		.atom-text-input {
+			max-width: 300px;
+		}
+	}
+
+
+
+	[id^="molecules-form-field"] {
 		.sg-grid-container {
 			width: 50%;
 		}

@@ -1,11 +1,29 @@
 $__ENVIRONMENT__: 'dev' !default;
 
-// the contents of this file will only be rendered if $__ENVIRONMENT__ != 'prod'
-// so, for prod builds, this file' contents will be removed from the bundle automatically
+
+
+@use 'normalize.css/normalize.css';
+
+
+
+@use 'global/base';
+
+
+
+//---( PATTERN LAB ONLY STYLES )---
+
 @use 'pattern-lab/pattern-scaffolding' with ($__ENVIRONMENT__: $__ENVIRONMENT__);
 
-@use 'atoms/forms/text-input';
+@use 'ci/basic/colors' with ($__ENVIRONMENT__: $__ENVIRONMENT__);
 
-@use 'molecules/forms/field';
+//---( / )---
+
+
+
+@use 'atoms/forms/text-input';
+@use 'atoms/forms/input-label';
+
+@use 'molecules/forms/form-field';
 
 @use 'organisms/forms/form';
+@use 'organisms/structure/section';

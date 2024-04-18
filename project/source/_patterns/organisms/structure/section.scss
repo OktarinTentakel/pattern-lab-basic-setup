@@ -1,0 +1,37 @@
+/*
+ * ~ORGANISM SECTION~
+ */
+
+
+
+@use 'env/defines' as *;
+
+
+
+.organism-section {
+	padding: 3rem 0;
+
+	background-color: rgba($CICOLOR_GREY, 0.05);
+
+
+
+	.headline-holder {
+		max-width: 1200px;
+
+		margin: 0 auto;
+
+
+
+		.headline {
+
+		}
+	}
+
+
+
+	.content {
+		max-width: 1200px;
+
+		margin: 0 auto;
+	}
+}

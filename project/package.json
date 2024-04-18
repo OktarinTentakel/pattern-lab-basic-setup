@@ -9,14 +9,14 @@
 	"type" : "module",
 
 	"browserslist" : [
-		"Chrome >= 90",
-		"ChromeAndroid >= 90",
-		"Android >= 90",
-		"Edge >= 90",
-		"Safari >= 14",
-		"iOS >= 14",
-		"Firefox >= 90",
-		"Opera >= 80"
+		"Chrome >= 100",
+		"ChromeAndroid >= 100",
+		"Android >= 100",
+		"Edge >= 100",
+		"Safari >= 15",
+		"iOS >= 15",
+		"Firefox >= 100",
+		"Opera >= 90"
 	],
 
 	"scripts" : {
@@ -55,5 +55,9 @@
 		"tasuku" : "~2.0.1",
 		"watcher" : "~2.3.1",
 		"yargs" : "~17.7.2"
+	},
+
+	"dependencies" : {
+		"@client/normalize.css": "npm:normalize.css@8.0.1"
 	}
 }

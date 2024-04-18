@@ -1,20 +1,26 @@
+/*
+ * ~APP~
+ */
+
 //###[ IMPORTS ]########################################################################################################
 
+import {Config} from 'env/config.js';
 import {Context} from 'env/context';
+import {PROJECT_NAME} from 'env/defines';
 
-import {init as initMoleculeField} from 'molecules/forms/field';
+import {init as initMoleculeFormField} from 'molecules/forms/form-field';
 
 
 
 //###[ PATTERN INITIALIZATION ]#########################################################################################
 
 function initPatterns(app){
-	initMoleculeField(app);
+	initMoleculeFormField(app);
 }
 
 
 
-//###[ APP ]############################################################################################################
+//###[ CLASS ]##########################################################################################################
 
 class App {
 
@@ -77,14 +83,33 @@ class App {
 			this.#eHtml.classList.add('is__in-pattern-lab-template-or-page');
 		}
 
-		// Deactivate console logging in production
-		//if( !Config.get('debug') && !Config.get('explicitlyAllowConsoleLogging') ){
+		if( !Config.get('debug') && !Config.get('explicitlyAllowConsoleLogging') ){
+			// Deactivate console logging in production
 			//setLogLevel('warn');
-		//}
-
-		//log('###( App started )###');
-		//log('###> Context:', Context.get());
-		//log('###> Config:', Config.get());
+		} else {
+		}
+			console.info(`###( ${PROJECT_NAME} started )###`);
+			console.info('###> Environment:', __ENVIRONMENT__);
+			console.info('###> Config:');
+			console.info(`${JSON.stringify(
+				Array.from(Config.get().entries()).reduce(
+					(obj, entry) => {
+						obj[entry[0]] = entry[1];
+						return obj;
+					},
+					{}
+				)
+			, null, 4)}`);
+			console.info('###> Context:');
+			console.info(`${JSON.stringify(
+				Array.from(Context.get().entries()).reduce(
+					(obj, entry) => {
+						obj[entry[0]] = entry[1];
+						return obj;
+					},
+					{}
+				)
+			, null, 4)}`);
 
 		this.#initPatterns();
 	}

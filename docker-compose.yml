@@ -13,6 +13,7 @@ services:
       environment:
          - TERM=xterm-256color
          - LANG=C.UTF-8
+         - NODE_ENV=development
          - ROARR_LOG=true
          - PROJECT=demo
          - ENVIRONMENT=dev

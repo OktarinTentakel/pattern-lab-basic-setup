@@ -1,0 +1,26 @@
+{#
+	~CI COLORS~
+#}
+
+<div class="ci-colors">
+	{% for color_type_name, color_type in colors %}
+		<div class="sg-colors color-type color-type-{{ color_type_name }}">
+			<h4 class="sg-swatches-headline">{{ color_type_name }}</h4>
+			<ul>
+				{% for color in color_type %}
+					<li>
+						<span class="sg-swatch color-{{ color.class }}"></span>
+						<span class="sg-label">
+							{{~ color.name }}<br/>
+							<small>
+								{{~ color.hex_code }}<br/>
+								{{~ color.rgb_code ~}}
+								{% if color.comment %}<br/>({{ color.comment ~}}){% endif %}
+							</small>
+						</span>
+					</li>
+				{% endfor %}
+			</ul>
+		</div>
+	{% endfor %}
+</div>

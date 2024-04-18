@@ -1,13 +1,35 @@
 /*
-	~ATOM TEXT INPUT~
-*/
+ * ~ATOM TEXT INPUT~
+ */
+
+@use 'env/defines' as *;
+
+
 
 .atom-text-input {
 	width: 100%;
 
+	padding: 11px 20px;
+
+	border: 1px solid $CICOLOR_GREY;
+
+	&:focus {
+		outline: none;
+	}
 
 
-	.text {
-		user-select: none;
+
+	&[disabled],
+	&.disabled {
+		opacity: 0.5;
+		cursor: default;
+		pointer-events: none;
+	}
+
+
+
+	&::-ms-clear {
+		width: 0;
+		height: 0;
 	}
 }

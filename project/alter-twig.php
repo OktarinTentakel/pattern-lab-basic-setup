@@ -18,9 +18,16 @@ function addCustomExtension(Environment &$env, $config) {
 
 
 
+	$env->addFunction(new TwigFunction('merge', function(){
+		$args = func_get_args();
+		return call_user_func_array('array_replace', $args);
+	}));
+
+
+
 	$env->addFunction(new TwigFunction('style_modifier', function($context){
-		if( isset($context['__style_modifier__']) ){
-			return " {$context['__style_modifier__']}";
+		if( isset($context['style_modifier']) ){
+			return " {$context['style_modifier']}";
 		} else {
 			return '';
 		}
@@ -29,22 +36,22 @@ function addCustomExtension(Environment &$env, $config) {
 
 
 	$env->addFunction(new TwigFunction('content_image', function($imageDefinitionOrDummyImageName){
-    		if( is_string($imageDefinitionOrDummyImageName) ){
-    			return [
-    				'alt' => $imageDefinitionOrDummyImageName,
-    				'sources' => [
-    					'small' => "/img/dummy-images/{$imageDefinitionOrDummyImageName}-small.png",
-    					'small2x' => "/img/dummy-images/{$imageDefinitionOrDummyImageName}-small@2x.png",
-    					'medium' => "/img/dummy-images/{$imageDefinitionOrDummyImageName}-medium.png",
-    					'medium2x' => "/img/dummy-images/{$imageDefinitionOrDummyImageName}-medium@2x.png",
-    					'large' => "/img/dummy-images/{$imageDefinitionOrDummyImageName}-large.png",
-    					'large2x' => "/img/dummy-images/{$imageDefinitionOrDummyImageName}-large@2x.png",
-    				]
-    			];
-    		} else {
-    			return $imageDefinitionOrDummyImageName;
-    		}
-    	}));
+		if( is_string($imageDefinitionOrDummyImageName) ){
+			return [
+				'alt' => $imageDefinitionOrDummyImageName,
+				'sources' => [
+					'small' => "/img/dummy-images/{$imageDefinitionOrDummyImageName}-small.png",
+					'small2x' => "/img/dummy-images/{$imageDefinitionOrDummyImageName}-small@2x.png",
+					'medium' => "/img/dummy-images/{$imageDefinitionOrDummyImageName}-medium.png",
+					'medium2x' => "/img/dummy-images/{$imageDefinitionOrDummyImageName}-medium@2x.png",
+					'large' => "/img/dummy-images/{$imageDefinitionOrDummyImageName}-large.png",
+					'large2x' => "/img/dummy-images/{$imageDefinitionOrDummyImageName}-large@2x.png",
+				]
+			];
+		} else {
+			return $imageDefinitionOrDummyImageName;
+		}
+	}));
 
 
 

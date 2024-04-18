@@ -82,10 +82,12 @@ const
 
 const
 	JS_INCLUDE_PATHS = [
+		path.resolve('./node_modules/@client'),
 		path.resolve(patternLabConfig.paths.includes.app),
 		path.resolve(patternLabConfig.paths.source.patterns),
 	],
 	SCSS_INCLUDE_PATHS = [
+		path.resolve('./node_modules/@client'),
 		path.resolve(patternLabConfig.paths.includes.styles),
 		path.resolve(patternLabConfig.paths.source.patterns),
 	],
@@ -204,23 +206,23 @@ function showStartUpDisplay(task){
 		|||
 	\n`;
 
-	if( task === 'start' ){
-		message += outdent `
-			|||  The development server will be available at:
-			|||  ${PROTOCOL}://${HOST}:${PORT}${DEVDOMAIN
-		?'\n|||'
-		+'\n|||  A dev domain has been defined, add this to you hosts file:'
-		+'\n|||  127.0.0.1\t'+DEVDOMAIN
-		+'\n|||'
-		+'\n|||  Access the development server via:'
-		+'\n|||  '+PROTOCOL+'://'+DEVDOMAIN+':'+PORT+'/'
-		+'\n|||'
-		:'\n|||'}
-			|||  (We are using a self-signed SSL certificate,
-			|||  so will have to skip a warning in the browser.)
-			|||
-		\n`;
-	}
+if( task === 'start' ){
+	message += outdent `
+		|||  The development server will be available at:
+		|||  ${PROTOCOL}://${HOST}:${PORT}${DEVDOMAIN
+	?'\n|||'
+	+'\n|||  A dev domain has been defined, add this to you hosts file:'
+	+'\n|||  127.0.0.1\t'+DEVDOMAIN
+	+'\n|||'
+	+'\n|||  Access the development server via:'
+	+'\n|||  '+PROTOCOL+'://'+DEVDOMAIN+':'+PORT+'/'
+	+'\n|||'
+	:'\n|||'}
+		|||  (We are using a self-signed SSL certificate,
+		|||  so will have to skip a warning in the browser.)
+		|||
+	\n`;
+}
 
 	message += outdent`
 		\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
@@ -435,13 +437,13 @@ function watchPatternLab(){
 
 
 function watchApp(){
-	return task('watching app files', async({setStatus, setOutput}) => {
+	return task('watching app files', async({setStatus, setOutput, setError}) => {
 		setStatus('watching');
 
 		appWatcher = new Watcher(
 			JS_INCLUDE_PATHS,
 			WATCHER_CONFIG,
-			(e, targetPath) => {
+			async (e, targetPath) => {
 				if(
 					WATCHER_EVENTS.includes(e)
 					&& /\.(js)$/.test(targetPath)
@@ -453,7 +455,14 @@ function watchApp(){
 
 					log.info(eventMessage);
 
-					buildApp(eventMessage);
+					try {
+						await buildApp(eventMessage);
+					} catch(ex){
+						setError(ex.message);
+						if( ENVIRONMENT !== 'dev' ){
+							throw ex;
+						}
+					}
 
 					log.info(rebuildMessage);
 					setOutput(outdent`${eventMessage} -> ${rebuildMessage}`);
@@ -468,12 +477,12 @@ function watchApp(){
 
 
 function watchStyles(){
-	return task('watching style files', async({setStatus, setOutput}) => {
+	return task('watching style files', async({setStatus, setOutput, setError}) => {
 		setStatus('watching');
 		stylesWatcher = new Watcher(
 			SCSS_INCLUDE_PATHS,
 			WATCHER_CONFIG,
-			(e, targetPath) => {
+			async (e, targetPath) => {
 				if(
 					WATCHER_EVENTS.includes(e)
 					&& /\.(scss)$/.test(targetPath)
@@ -485,7 +494,14 @@ function watchStyles(){
 
 					log.info(eventMessage);
 
-					buildStyles(eventMessage);
+					try {
+						await buildStyles(eventMessage);
+					} catch(ex){
+						setError(ex.message);
+						if( ENVIRONMENT !== 'dev' ){
+							throw ex;
+						}
+					}
 
 					log.info(rebuildMessage);
 					setOutput(outdent`${eventMessage} -> ${rebuildMessage}`);
@@ -601,10 +617,14 @@ function downloadDummyImages(){
 
 
 
-//###[ TASKS ]##########################################################################################################
+//###[ PRE UPSTART SETUP ]##############################################################################################
 
 defineTasukuLogging();
 definePatternLabLogging();
+
+
+
+//###[ TASKS ]##########################################################################################################
 
 switch( argv.task ){
 	case 'start':
@@ -657,4 +677,26 @@ switch( argv.task ){
 
 		process.exit(0);
 	break;
+}
+
+
+
+//###[ POST UPSTART SETUP ]#############################################################################################
+
+if( ENVIRONMENT === 'dev' ){
+	// we do not want to kill the process on errors during dev, but rather log them, keeping the process alive,
+	// allowing for retries with watcher-triggered rebuilds
+	// this is especially the case for pattern lab errors occurring during watch
+	process.on('uncaughtException', error => {
+		log.error(`Unhandled exception: ${error}`);
+		log.error('Stack:');
+		log.error(error.stack);
+	});
+
+	process.on('unhandledRejection', (reason, promise) => {
+		log.error(`Unhandled promise rejection at: ${promise}`);
+		log.error(`With the reason: ${reason}`);
+		log.error('Stack:');
+		log.error(reason.stack);
+	});
 }

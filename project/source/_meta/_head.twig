@@ -13,6 +13,12 @@
 
 		<script src="/js/app.js?{{ cacheBuster }}" defer></script>
 
+		<script>
+			__PATTERN_LAB_BASIC_SETUP__CONFIG = {
+				debug : true
+			};
+		</script>
+
 		{{ patternLabHead|raw }}
 	</head>
 	<body class="{{ bodyClass }}">

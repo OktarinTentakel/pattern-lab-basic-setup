@@ -1,0 +1,25 @@
+//###[ PATHS ]##########################################################################################################
+
+$STATIC_PATH: '/';
+
+
+
+//###[ COLORS ]#########################################################################################################
+
+//###( CI COLORS )###
+
+$CICOLOR_PRIMARY_GREEN: #009036;
+$CICOLOR_SECONDARY_GREEN: #008237;
+
+$CICOLOR_WHITE: #ffffff;
+$CICOLOR_BLACK: #161b1c;
+$CICOLOR_GREY: #969899;
+
+$CICOLORS: (
+	'primary-green': $CICOLOR_PRIMARY_GREEN,
+	'secondary-green': $CICOLOR_SECONDARY_GREEN,
+
+	'white': $CICOLOR_WHITE,
+	'black': $CICOLOR_BLACK,
+	'grey': $CICOLOR_GREY,
+);

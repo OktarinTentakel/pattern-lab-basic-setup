@@ -1,0 +1,21 @@
+/*
+ * ~CI COLORS~
+ */
+
+@use 'env/defines' as *;
+
+$__ENVIRONMENT__: 'dev' !default;
+
+
+
+@if( $__ENVIRONMENT__ != 'prod' ) {
+	.ci-colors {
+		.sg-swatch {
+			@each $colorName, $color in $CICOLORS {
+				&.color-#{$colorName} {
+					background-color: $color;
+				}
+			}
+		}
+	}
+}

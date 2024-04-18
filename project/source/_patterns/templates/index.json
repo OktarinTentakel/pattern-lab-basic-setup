@@ -1,0 +1,32 @@
+{
+	"form" : {
+		"fields" : [
+			{
+				"label" : {
+					"text" : "Label",
+					"required" : true
+				},
+				"input" : {
+					"placeholder" : "Placeholder"
+				}
+			},
+			{
+				"label" : {
+					"text" : "Label"
+				},
+				"input" : {
+					"placeholder" : "Placeholder"
+				}
+			},
+			{
+				"label" : {
+					"text" : "Label"
+				},
+				"input" : {
+					"placeholder" : "Placeholder"
+				}
+			}
+
+		]
+	}
+}

@@ -1,0 +1,8 @@
+{#
+	~MOLECULE FORM FIELD~
+#}
+
+<label class="molecule-form-field{{ style_modifier() }}">
+	{% pattern 'atoms/input-label' with label %}
+	{% pattern 'atoms/text-input' with merge(input, {style_modifier : 'input'}) %}
+</label>

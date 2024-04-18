@@ -1,0 +1,8 @@
+{#
+	~ATOM INPUT LABEL~
+#}
+
+<label
+	class="atom-input-label{{ style_modifier() }}"
+	{% if for %}for="{{ for }}"{% endif %}
+><span class="text">{{ text }}{% if required %}<span class="required">*</span>{% endif %}</span></label>

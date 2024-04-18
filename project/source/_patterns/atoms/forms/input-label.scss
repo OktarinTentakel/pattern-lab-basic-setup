@@ -1,0 +1,14 @@
+/*
+ * ~ATOM INPUT LABEL~
+ */
+
+@use 'env/defines' as *;
+
+
+
+.atom-input-label {
+	.required {
+		color: $CICOLOR_SECONDARY_GREEN;
+	}
+}
+

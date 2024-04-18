@@ -4,7 +4,7 @@ import {AbstractEnvSingleton}  from 'env/abstract-env-singleton';
 
 
 
-//###[ CONTEXT ]########################################################################################################
+//###[ CLASS ]##########################################################################################################
 
 class ContextSingleton extends AbstractEnvSingleton {
 

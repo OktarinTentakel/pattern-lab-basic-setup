@@ -1,4 +1,4 @@
-Pattern lab basic setup
+Pattern Lab Basic Setup
 =======================
 by Sebastian Schlapkohl
 
@@ -61,7 +61,11 @@ How do I start my own pattern lab based on this?
    - add your project's breakpoints to `ishViewportRange`
    - change options accoring to [documentation](https://patternlab.io/docs/editing-the-configuration-options/),
      but keep an eye out for comments for values you should not change
-5. Rework demo patterns into something representative for your project.
+5. Edit `app/env/defines.js`
+   - change `PROJECT_NAME` to your project's name
+   - change `PROJECT_PREFIX` to a technical prefix for your project,
+     which will be used for constants and storage names
+6. Rework demo patterns into something representative for your project.
 
 
 
@@ -78,7 +82,7 @@ To create the dev environment, switch to the root folder of the project (where t
 and run
 
 ```bash
-./bin/rebuild-docker.sh
+./bin/create.sh
 ```
 
 This should download all necessary images and create our containers.
@@ -140,7 +144,7 @@ to skip in order to load the pattern lab.
 Terminate execution with `CTRL+C` in the terminal window, where the container is running.
 
 Sometimes using `CTRL+C` might result in an "abort" error message, in that case, to really
-stop the process, use `docker-compose stop`.
+stop the process, use `docker compose stop`.
 
 In order to get a shell on the running container, run
 
@@ -153,7 +157,7 @@ in a separate terminal window.
 To start the container and enter the shell thereafter, use
 
 ```bash
-./bin/patternlab/shell.sh
+./bin/shell.sh
 ```
 
 
@@ -176,11 +180,11 @@ yarn add mypackagename --dev
 
 This will automatically update `node_modules`, `package.json` and all lock files.
 
-If other people have added dependencies, don't worry starting the project automatically checks dependecies
+If other people have added dependencies, don't worry starting the project automatically checks dependencies
 and updates if necessary. If you'd like to trigger an update manually, use
 
 ```bash
-./bin/init/install-node-dependencies.sh
+./bin/install.sh
 ```
 
 Always check and adapt your version definition strings in `package.json` after adding a dependency:
