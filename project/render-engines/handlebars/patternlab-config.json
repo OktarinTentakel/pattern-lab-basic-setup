@@ -1,0 +1,7 @@
+{
+	"handlebars" : {
+		"package" : "@pattern-lab/engine-handlebars",
+		"fileExtensions" : ["hbs"],
+		"extend" : "/project/render-engines/handlebars/handlebars-extensions.cjs"
+	}
+}

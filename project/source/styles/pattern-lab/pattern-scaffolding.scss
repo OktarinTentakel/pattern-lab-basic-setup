@@ -158,17 +158,134 @@ $__ENVIRONMENT__: 'dev' !default;
 
 	//###[ PATTERNS ]###################################################################################################
 
-	[id^="atoms-text-input"] {
-		.atom-text-input {
-			max-width: 300px;
+	$PATTERN_MAX_WIDTH: 600px;
+
+
+
+	//###( ATOMS )###
+
+	// TEXT
+
+	[id^='atoms-primary-headline'] {
+		.atom-primary-headline {
+			width: 100%;
+			max-width: $PATTERN_MAX_WIDTH;
 		}
 	}
 
 
 
-	[id^="molecules-form-field"] {
+	[id^='atoms-secondary-headline'] {
+		.atom-secondary-headline {
+			width: 100%;
+			max-width: $PATTERN_MAX_WIDTH;
+		}
+	}
+
+
+
+	[id^='atoms-tertiary-headline'] {
+		.atom-tertiary-headline {
+			width: 100%;
+			max-width: $PATTERN_MAX_WIDTH;
+		}
+	}
+
+
+
+	[id^='atoms-quaternary-headline'] {
+		.atom-quaternary-headline {
+			width: 100%;
+			max-width: $PATTERN_MAX_WIDTH;
+		}
+	}
+
+
+
+	[id^='atoms-unordered-list'] {
+		.atom-unordered-list {
+			width: 100%;
+			max-width: $PATTERN_MAX_WIDTH;
+		}
+	}
+
+
+
+	[id^='atoms-ordered-list'] {
+		.atom-ordered-list {
+			width: 100%;
+			max-width: $PATTERN_MAX_WIDTH;
+		}
+	}
+
+
+
+	[id^='atoms-copytext'] {
+		.atom-copytext {
+			width: 100%;
+			max-width: $PATTERN_MAX_WIDTH;
+		}
+	}
+
+
+
+	// MEDIA
+
+	[id^='atoms-content-image'] {
+		.atom-content-image {
+			img {
+				width: 100%;
+				max-width: $PATTERN_MAX_WIDTH;
+			}
+		}
+	}
+
+
+
+	[id^='atoms-media-caption'] {
+		.atom-media-caption {
+			width: 100%;
+			max-width: $PATTERN_MAX_WIDTH;
+		}
+	}
+
+
+
+	// FORMS
+
+	[id^='atoms-text-input'] {
+		.atom-text-input {
+			width: 200px;
+		}
+	}
+
+
+
+	[id^='atoms-input-label'] {
+		.atom-input-label {
+			width: 200px;
+		}
+	}
+
+
+
+	//###( MOLECULES )###
+
+	// MEDIA
+
+	[id^='molecules-image'] {
 		.sg-grid-container {
-			width: 50%;
+			width: 100%;
+			max-width: $PATTERN_MAX_WIDTH;
+		}
+	}
+
+
+	// FORMS
+
+	[id^='molecules-form-field'] {
+		.sg-grid-container {
+			width: 200px;
 		}
 	}
 }

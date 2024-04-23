@@ -1,0 +1,41 @@
+/*
+ * ~FONT FACES~
+ */
+
+@font-face {
+	font-family: 'Hack';
+	font-style: normal;
+	font-weight: 400;
+	src: url('/fnt/hack-regular.woff2') format('woff2'), url('/fnt/hack-regular.woff') format('woff');
+	font-display: swap;
+}
+
+
+
+@font-face {
+	font-family: 'Hack';
+	font-style: normal;
+	font-weight: 700;
+	src: url('/fnt/hack-bold.woff2') format('woff2'), url('/fnt/hack-bold.woff') format('woff');
+	font-display: swap;
+}
+
+
+
+@font-face {
+	font-family: 'Hack';
+	font-style: italic;
+	font-weight: 400;
+	src: url('/fnt/hack-italic.woff2') format('woff2'), url('/fnt/hack-italic.woff') format('woff');
+	font-display: swap;
+}
+
+
+
+@font-face {
+	font-family: 'Hack';
+	font-style: italic;
+	font-weight: 700;
+	src: url('/fnt/hack-bolditalic.woff2') format('woff2'), url('/fnt/hack-bolditalic.woff') format('woff');
+	font-display: swap;
+}

@@ -1,0 +1,14 @@
+{#
+	~MOLECULE IMAGE~
+#}
+
+{% if get_type(image) == 'string' %}
+	{% set image = content_image(image) %}
+{% endif %}
+
+<figure class="molecule-image{{ style_modifier() }}">
+	{{ pattern('atoms/content-image', merge(image, {style_modifier : 'image'})) }}
+	{% if caption %}
+		{{ pattern('atoms/media-caption', merge(caption, {style_modifier : 'caption'})) }}
+	{% endif %}
+</figure>

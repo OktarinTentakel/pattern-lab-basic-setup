@@ -1,0 +1,135 @@
+/*
+ * ~ATOM COPYTEXT~
+ */
+
+@use 'atoms/text/unordered-list';
+@use 'atoms/text/ordered-list';
+
+
+
+.atom-copytext {
+	> * {
+		display: block;
+	}
+
+
+
+	ul {
+		@extend .atom-unordered-list;
+	}
+
+
+
+	ol {
+		@extend .atom-ordered-list;
+	}
+
+
+
+	> p,
+	> ul,
+	> ol {
+		margin-top: 0;
+		margin-bottom: 1rem;
+
+		&:last-child {
+			margin-bottom: 0;
+		}
+	}
+
+
+
+	a {
+		// this is needed stop the a-tags from breaking the text-flow, if not used in a p-tag
+		display: inline;
+	}
+
+
+
+	b,
+	strong {
+		font-weight: bold;
+
+
+
+		a {
+			font-weight: bold;
+		}
+	}
+
+
+
+	small {
+		font-size: smaller;
+
+
+
+		a {
+			font-size: smaller;
+		}
+
+
+
+		b,
+		strong {
+			font-weight: bold;
+			font-size: smaller;
+
+
+
+			a {
+				font-weight: bold;
+				font-size: smaller;
+			}
+		}
+	}
+
+
+
+	i,
+	em {
+		font-style: oblique;
+	}
+
+
+
+	s,
+	strike {
+		text-decoration: line-through;
+	}
+
+
+
+	u {
+		text-decoration: underline;
+	}
+
+
+
+	&.is__type-small {
+		font-size: smaller;
+
+
+
+		ul,
+		ol,
+		a {
+			font-size: smaller;
+		}
+
+
+
+		b,
+		strong {
+			font-weight: bold;
+			font-size: smaller;
+
+
+
+			a {
+				font-weight: bold;
+				font-size: smaller;
+			}
+		}
+	}
+}

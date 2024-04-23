@@ -1,0 +1,8 @@
+{#
+	~ATOM COPYTEXT~
+#}
+
+<div class="atom-copytext{% if type %} is__type-{{ type }}{% endif %}{{ style_modifier() }}">
+	{# has to be raw html to allow basic copytext markup such as <p>, <a> and lists #}
+	{{ text|raw }}
+</div>

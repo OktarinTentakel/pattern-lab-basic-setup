@@ -4,11 +4,7 @@
 
 <input
 	type="text"
-	class="atom-text-input
-		{%~ if negative %} negative{% endif ~%}
-		{%~ if error %} error{% endif ~%}
-		{{~ style_modifier() ~}}
-	"
+	class="atom-text-input{{ style_modifier() }}"
 	{% if id %}id="{{ id }}"{% endif %}
 	{% if name %}name="{{ name }}"{% endif %}
 	{% if value %}value="{{ value }}"{% endif %}

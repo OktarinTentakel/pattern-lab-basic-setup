@@ -1,0 +1,29 @@
+/*
+ * ~MOLECULE IMAGE~
+ */
+
+.molecule-image {
+	display: block;
+
+	margin: 0;
+
+
+
+	> .image {
+		display: block;
+
+
+
+		> img {
+			width: 100%;
+		}
+	}
+
+
+
+	> .caption {
+		display: block;
+
+		margin-top: 1rem;
+	}
+}

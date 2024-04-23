@@ -1,0 +1,11 @@
+{
+	"alt" : "image alt text",
+	"sources" : {
+		"small" : "/img/dummy-content/1by1.svg",
+		"small2x" : null,
+		"medium" : "/img/dummy-content/4by3.svg",
+		"medium2x" : null,
+		"large" : "/img/dummy-content/16by9.svg",
+		"large2x" : null
+	}
+}

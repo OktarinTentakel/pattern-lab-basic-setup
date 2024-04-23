@@ -1,0 +1,58 @@
+{
+	"twig-php" : {
+		"package" : "@pattern-lab/engine-twig-php",
+		"fileExtensions" : ["twig"],
+		"namespaces" : [
+			{
+				"id" : "uikit",
+				"recursive" : true,
+				"paths" : [
+					"./node_modules/@pattern-lab/uikit-workshop/views-twig"
+				]
+			},
+			{
+				"id" : "atoms",
+				"recursive" : true,
+				"paths" : [
+					"./source/_patterns/atoms"
+				]
+			},
+			{
+				"id" : "molecules",
+				"recursive" : true,
+				"paths" : [
+					"./source/_patterns/molecules"
+				]
+			},
+			{
+				"id" : "organisms",
+				"recursive" : true,
+				"paths" : [
+					"./source/_patterns/organisms"
+				]
+			},
+			{
+				"id" : "templates",
+				"recursive" : true,
+				"paths" : [
+					"./source/_patterns/templates"
+				]
+			},
+			{
+				"id" : "pages",
+				"recursive" : true,
+				"paths" : [
+					"./source/_patterns/pages"
+				]
+			}
+		],
+		"alterTwigEnv" : [
+			{
+				"file" : "/project/render-engines/twig-php/twig-php-extensions.php",
+				"functions" : [
+					"addCustomExtension"
+				]
+			}
+		]
+	}
+}

@@ -1,4 +1,10 @@
 {
+	"header_image" : {
+		"image" : "asset",
+		"caption" : {
+			"text" : "<p><b>„Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin laoreet sollicitudin nulla.“</b><br/>Duis sit <i>amet</i> molestie turpis</p>"
+		}
+	},
 	"form" : {
 		"fields" : [
 			{

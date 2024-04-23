@@ -29,14 +29,16 @@
 		"watch" : [
 			"index.js",
 			"patternlab-config.json",
-			"alter-twig.php"
+			"alter-twig.php",
+			"render-engines/twig/twig-engine.cjs",
+			"render-engines/twig/twig-extensions.cjs",
+			"source/_data/*.json"
 		]
 	},
 
 	"devDependencies" : {
 		"@pattern-lab/cli" : "~6.1.0",
 		"@pattern-lab/core" : "~6.1.0",
-		"@pattern-lab/engine-twig-php" : "~6.1.0",
 		"@pattern-lab/uikit-workshop" : "~6.1.0",
 		"@roarr/cli" : "~5.12.4",
 		"autoprefixer" : "~10.4.19",
@@ -53,6 +55,7 @@
 		"roarr" : "~7.21.1",
 		"sass" : "~1.75.0",
 		"tasuku" : "~2.0.1",
+		"twing" : "~6.1.0",
 		"watcher" : "~2.3.1",
 		"yargs" : "~17.7.2"
 	},

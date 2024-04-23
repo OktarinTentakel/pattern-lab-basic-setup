@@ -89,13 +89,13 @@ function addCustomExtension(Environment &$env, $config) {
 			$templateName = $this->getNode('expr');
 			$templateName->setAttribute('value', "@{$templateName->getAttribute('value')}.twig");
 
-			$includeNode = new \Twig\Node\IncludeNode(
-				$templateName,
+			$includeNode = new \Twig\Node\EmbedNode(
+				$templateName->getAttribute('value'),
+				$this->getTemplateLine(),
 				$this->getNode('args'),
 				$this->getAttribute('only'),
 				false,
-				false,
-				$this->getTemplateLine()
+				false
 			);
 
 			$compiler->subcompile($includeNode);
@@ -109,4 +109,11 @@ function addCustomExtension(Environment &$env, $config) {
 	}
 
 	$env->addExtension(new PatternTagExtension());
+
+
+
+	$env->addFunction(new TwigFunction('pattern', function($patternName, $variables) use ($env){
+		$template = "@{$patternName}.twig";
+		return $env->render($template, $variables, $with_context=false);
+	}));
 }

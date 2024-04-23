@@ -1,10 +1,48 @@
 //###[ SCAFFOLDING DEFINITIONS ]########################################################################################
 
 function scaffold(){
-	this.justAddPatternInfo('atoms-text-input', 'atom-text-input');
+	//###( ATOMS )###
 
-	this.buildGridContainerFor('molecules-form-field', 'molecule-form-field:not(.negative)');
-	this.buildGridContainerFor('molecules-form-field', 'molecule-form-field.negative', 'negative');
+	// TEXT
+
+	this.justAddPatternInfo('atoms-primary-headline', 'atom-primary-headline');
+	this.justAddPatternInfo('atoms-secondary-headline', 'atom-secondary-headline');
+	this.justAddPatternInfo('atoms-tertiary-headline', 'atom-tertiary-headline');
+	this.justAddPatternInfo('atoms-quaternary-headline', 'atom-quaternary-headline');
+	this.justAddPatternInfo('atoms-unordered-list', 'atom-unordered-list');
+	this.justAddPatternInfo('atoms-ordered-list', 'atom-ordered-list');
+	this.justAddPatternInfo('atoms-copytext', 'atom-copytext');
+
+
+	// MEDIA
+
+	this.justAddPatternInfo('atoms-content-image', 'atom-content-image');
+	this.justAddPatternInfo('atoms-media-caption', 'atom-media-caption');
+
+
+	// FORMS
+
+	this.justAddPatternInfo('atoms-text-input', 'atom-text-input');
+	this.justAddPatternInfo('atoms-input-label', 'atom-input-label');
+
+
+
+	//###( MOLECULES )###
+
+	// MEDIA
+
+	this.buildGridContainerFor('molecules-image', 'molecule-image');
+
+
+	// FORMS
+
+	this.buildGridContainerFor('molecules-form-field', 'molecule-form-field');
+
+
+
+	//###( ORGANISMS )###
+
+	// FORMS
 
 	this.buildSectionFor('organisms-form', 'organism-form', 'Form Section', true);
 }

@@ -3,6 +3,6 @@
 #}
 
 <label
-	class="atom-input-label{{ style_modifier() }}"
+	class="atom-input-label{% if required %}  is__required{% endif %}{{ style_modifier() }}"
 	{% if for %}for="{{ for }}"{% endif %}
-><span class="text">{{ text }}{% if required %}<span class="required">*</span>{% endif %}</span></label>
+><span class="text">{{ text }}</span>{% block input %}{% endblock %}</label>

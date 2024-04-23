@@ -1,0 +1,47 @@
+{#
+	~ATOM CONTENT IMAGE~
+#}
+
+{% if _default_ and (get_type(_default_) == 'string') %}
+	{% set _default_ = content_image(_default_) %}
+	{% set alt = _default_.alt %}
+	{% set sources = _default_.sources %}
+{% endif %}
+
+<picture class="atom-content-image{{ style_modifier() }}">
+	{% set fallback_source = false %}
+	{% for breakpoint_name, breakpoint in BREAKPOINTS %}
+		{% if not fallback_source and sources[breakpoint_name] %}
+			{% set fallback_source = breakpoint_name %}
+		{% endif %}
+	{% endfor %}
+
+	{% for breakpoint_name, breakpoint in BREAKPOINTS|reverse(true) %}
+		{% if sources[breakpoint_name] and (breakpoint_name != fallback_source) %}
+			{% set double_size_source = "#{breakpoint_name}2x" %}
+			<source
+				{% if sources[double_size_source] %}
+					srcset="{{ sources[breakpoint_name] }} 1x, {{ sources[double_size_source] }} 2x"
+				{% else %}
+					srcset="{{ sources[breakpoint_name] }}"
+				{% endif %}
+				media="(min-width: {{ BREAKPOINTS[breakpoint_name] }}px)"
+			/>
+		{% endif %}
+	{% endfor %}
+
+	{% if fallback_source %}
+		{% set double_size_source = "#{fallback_source}2x" %}
+		<img
+			{% if sources[double_size_source] %}
+				srcset="{{ sources[fallback_source] }} 1x, {{ sources[double_size_source] }} 2x"
+			{% else %}
+				srcset="{{ sources[fallback_source] }}"
+			{% endif %}
+			src="{{ sources[fallback_source] }}"
+			alt="{{ alt }}"
+			loading="{% if loading %}{{ loading }}{% else %}auto{% endif %}"
+			draggable="false"
+		/>
+	{% endif %}
+</picture>

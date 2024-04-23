@@ -1,0 +1,77 @@
+/*
+ * ~TYPOGRAPHY~
+ */
+
+//###[ BASIC MIXINS ]###################################################################################################
+
+@mixin font-smoothing-light-on-dark($selector:'&, *') {
+	#{$selector} {
+		-webkit-font-smoothing: antialiased;
+		-moz-osx-font-smoothing: grayscale;
+	}
+}
+
+@mixin font-smoothing-dark-on-light($selector:'&, *') {
+	#{$selector} {
+		-webkit-font-smoothing: subpixel-antialiased;
+		-moz-osx-font-smoothing: auto;
+	}
+}
+
+
+
+//###[ FONT DEFINITIONS ]###############################################################################################
+
+@mixin font-hack($size:14px, $lineHeight:1.2, $important:false) {
+	@if $important {
+		$important: ' !important';
+	} @else {
+		$important: '';
+	}
+
+	font-family: Hack, sans-serif#{$important};
+
+	@if $size != 'keep-current' {
+		font-size: $size;
+	}
+
+	@if $lineHeight != 'keep-current' {
+		line-height: $lineHeight;
+	}
+
+	font-weight: 400;
+}
+
+
+
+//###[ FONT CONFIGS ]###################################################################################################
+
+@mixin textconfig-copy($italic:false, $bold:false) {
+	@include font-hack();
+
+	@if $italic {
+		font-style: italic;
+	}
+
+	@if $bold {
+		font-weight: 700;
+	}
+
+	color: #222;
+}
+
+%text-copy {
+	@include textconfig-copy();
+}
+
+%text-copy-italic {
+	@include textconfig-copy($italic:true);
+}
+
+%text-copy-bold {
+	@include textconfig-copy($bold:true);
+}
+
+%text-copy-italic-bold {
+	@include textconfig-copy($italic:true, $bold:true);
+}

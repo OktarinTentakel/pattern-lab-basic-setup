@@ -1,0 +1,9 @@
+{#
+	~CI FONTS~
+#}
+
+<div class="ci-fonts">
+	{% for font_name, font in fonts %}
+		<p class="font {{ font_name }}">{{ font }}</p>
+	{% endfor %}
+</div>

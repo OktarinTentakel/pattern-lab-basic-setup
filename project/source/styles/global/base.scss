@@ -1,4 +1,5 @@
 @use 'env/defines' as *;
+@use 'global/typography';
 
 
 
@@ -14,8 +15,8 @@ html {
 
 html,
 body {
-	font-family: sans-serif;
-	color: $CICOLOR_BLACK;
+	@include typography.textconfig-copy();
+	@include typography.font-smoothing-dark-on-light();
 
 	background-color: $CICOLOR_WHITE;
 }

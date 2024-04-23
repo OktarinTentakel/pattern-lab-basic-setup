@@ -3,10 +3,11 @@
  */
 
 .organism-form {
+	.field {
+		display: block;
+	}
 
 	.field + .field {
-		display: block;
-
 		margin-top: 2rem;
 	}
 }

@@ -1,9 +1,13 @@
 #!/bin/bash
 
+# this script needs user:group mapping because deploy pipelines
+# run with a different users and might need to touch the build files
+
 cd "${0%/*}" && \
 cd .. && \
 ./bin/install.sh && \
-ENVIRONMENT="prod" \
+ENVIRONMENT='prod' \
 docker compose run --rm \
+-u "$(id -u):$(id -g)" \
 -e ENVIRONMENT \
-pattern-lab bash -c "yarn run build"
+pattern-lab bash -c 'yarn run build'

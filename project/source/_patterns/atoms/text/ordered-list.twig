@@ -1,0 +1,9 @@
+{#
+	~ATOM ORDERED LIST~
+#}
+
+<ol class="atom-ordered-list{{ style_modifier() }}">
+	{% for item in items %}
+		<li>{{ item }}</li>
+	{% endfor %}
+</ol>

@@ -3,7 +3,6 @@ FROM node:20
 RUN apt-get update
 RUN apt-get upgrade -y
 RUN apt-get install -y bc ed nano fonts-powerline
-RUN apt-get install -y php-common php-cli
 RUN apt-get clean
 RUN rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 

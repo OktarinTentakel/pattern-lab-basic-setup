@@ -1,0 +1,9 @@
+{#
+	~ATOM UNORDERED LIST~
+#}
+
+<ul class="atom-unordered-list{{ style_modifier() }}">
+	{% for item in items %}
+		<li>{{ item }}</li>
+	{% endfor %}
+</ul>

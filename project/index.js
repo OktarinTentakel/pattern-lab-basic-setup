@@ -81,6 +81,9 @@ const
 //###[ CONSTANTS ]######################################################################################################
 
 const
+	PL_INCLUDE_PATHS = [
+		path.resolve(patternLabConfig.paths.source.patterns),
+	],
 	JS_INCLUDE_PATHS = [
 		path.resolve('./node_modules/@client'),
 		path.resolve(patternLabConfig.paths.includes.app),
@@ -144,6 +147,7 @@ const
 
 const
 	patternLab = patternLabFactory(patternLabConfig),
+	{default : twigEngine} = await import('./render-engines/twig/twig-engine.cjs'),
 	server = browserSync.create(),
 	esbuild = await esbuildFactory.context(ESBUILD_CONFIG),
 	sass = sassFactory.initCompiler()
@@ -182,7 +186,10 @@ async function delayTasukuTask(delay=250){
 
 function definePatternLabLogging(){
 	//patternLabLogger.log.on('debug', message => { log.debug(message); });
-	patternLabLogger.log.on('info', message => { log.info(message); });
+	patternLabLogger.log.on('info', message => {
+		if( message.startsWith('Found a lower common denominator pattern state') ) return;
+		log.info(message);
+	});
 	patternLabLogger.log.on('warning', message => { log.warn(message); });
 	patternLabLogger.log.on('error', message => { log.error(message); });
 }
@@ -290,42 +297,11 @@ async function downloadFile(url, filePath){
 
 //###[ TASK DEFINITIONS ]###############################################################################################
 
-function startPatternLab(){
-	return task('starting pattern lab', async({setStatus, setOutput}) => {
-		setStatus('starting');
-
-		patternLab.events.on('patternlab-build-end', () => {
-			patternLabBuildCount++;
-			const message = outdent`pattern lab build [${patternLabBuildCount}] finished`;
-			log.info(message);
-			setOutput(message);
-			server.reload();
-		});
-
-		await patternLab
-			.build({
-				watch : true,
-				cleanPublic : false
-			})
-		;
-
-		await removeNonTwigMetaTemplates();
-
-		setStatus('started');
-	});
-}
-
-
-
 function publishPatternLab(){
 	return task('publishing pattern lab', async({setStatus, setOutput}) => {
 		setStatus('publishing');
 
-		await patternLab
-			.build({
-				cleanPublic : true
-			})
-		;
+		await patternLab.build({cleanPublic : true});
 
 		await removeNonTwigMetaTemplates();
 
@@ -339,9 +315,32 @@ function publishPatternLab(){
 
 
 
-function buildPatternLab(){
-	// is automatically handled in startPatternLab()
-	return Promise.resolve();
+function buildPatternLab(message=null, cleanPublic=true){
+	return task('building pattern lab', async({setStatus, setOutput}) => {
+		setStatus('building');
+
+		patternLab.events.on('patternlab-build-end', () => {
+			twigEngine.reload();
+		});
+
+		patternLab.events.on('patternlab-build-end', () => {
+			patternLabBuildCount++;
+			const message = outdent`pattern lab build [${patternLabBuildCount}] finished`;
+			log.info(message);
+			setOutput(message);
+			server.reload();
+		});
+
+		await patternLab.build({cleanPublic});
+
+		await removeNonTwigMetaTemplates();
+
+		setStatus('built');
+
+		if( message ){
+			setOutput(message);
+		}
+	});
 }
 
 
@@ -430,8 +429,41 @@ function serve(){
 
 
 function watchPatternLab(){
-	// is automatically handled in startPatternLab()
-	return Promise.resolve();
+	return task('watching pattern lab files', async({setStatus, setOutput, setError}) => {
+		setStatus('watching');
+
+		appWatcher = new Watcher(
+			PL_INCLUDE_PATHS,
+			WATCHER_CONFIG,
+			async (e, targetPath) => {
+				if(
+					WATCHER_EVENTS.includes(e)
+					&& /\.(twig|json|md)$/.test(targetPath)
+				){
+					const
+						eventMessage = outdent`detected ${e}@${path.basename(targetPath)}`,
+						rebuildMessage = outdent`built patterns, reloading ...`
+					;
+
+					log.info(eventMessage);
+
+					try {
+						await buildPatternLab(eventMessage, false);
+					} catch(ex){
+						setError(ex.message);
+						if( ENVIRONMENT !== 'dev' ){
+							throw ex;
+						}
+					}
+
+					log.info(rebuildMessage);
+					setOutput(outdent`${eventMessage} -> ${rebuildMessage}`);
+
+					server.reload();
+				}
+			}
+		);
+	});
 }
 
 
@@ -635,13 +667,12 @@ switch( argv.task ){
 			removeDependencyGraph()
 		]);
 
-		await Promise.allSettled([
-			startPatternLab(),
-			build()
-		]);
+		await build();
 
-		serve();
-		watch();
+		await Promise.allSettled([
+			serve(),
+			watch()
+		]);
 	break;
 
 	case 'build':

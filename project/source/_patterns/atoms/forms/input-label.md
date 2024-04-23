@@ -1,5 +1,7 @@
 ---
 title: Input Label
+order: 2
+state: complete
 ---
 An input label offers a short description for a single form element. This element should either be embedded inside the
 label or connected via the label's "for"-attribute.

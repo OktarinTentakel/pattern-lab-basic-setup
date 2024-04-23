@@ -7,8 +7,16 @@
 
 
 .atom-input-label {
-	.required {
-		color: $CICOLOR_SECONDARY_GREEN;
+	&.is__required {
+		.text {
+			&::after {
+				content: '*';
+
+				margin-left: 0.5ex;
+
+				color: $CICOLOR_SECONDARY_GREEN;
+			}
+		}
 	}
 }
 

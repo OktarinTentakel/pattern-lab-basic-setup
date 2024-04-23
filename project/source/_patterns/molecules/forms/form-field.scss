@@ -2,12 +2,19 @@
  * ~MOLECULE FORM FIELD~
  */
 
-@use 'env/defines' as *;
-
-
-
 .molecule-form-field {
-	&.demo {
-		background-color: $CICOLOR_GREY
+	label {
+		.text {
+			display: block;
+		}
+
+
+
+		input {
+			display: block;
+
+			width: 62%;
+			min-width: 295px;
+		}
 	}
 }

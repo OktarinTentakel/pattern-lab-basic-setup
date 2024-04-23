@@ -1,0 +1,11 @@
+{
+	"alt" : "image alt text",
+	"sources" : {
+		"small" : "/img/dummy-content/newyork-small.jpg",
+		"small2x" : "/img/dummy-content/newyork-small@2x.jpg",
+		"medium" : "/img/dummy-content/newyork-medium.jpg",
+		"medium2x" : "/img/dummy-content/newyork-medium@2x.jpg",
+		"large" : "/img/dummy-content/newyork-large.jpg",
+		"large2x" : "/img/dummy-content/newyork-large@2x.jpg"
+	}
+}

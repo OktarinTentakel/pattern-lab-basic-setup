@@ -1,0 +1,34 @@
+/*
+ * ~CI COLORS~
+ */
+
+@use 'env/defines' as *;
+@use 'global/typography';
+
+
+
+$__ENVIRONMENT__: 'dev' !default;
+
+
+
+@if( $__ENVIRONMENT__ != 'prod' ) {
+	.ci-fonts {
+		.font {
+			&.hack-regular {
+				@extend %text-copy;
+			}
+
+			&.hack-bold {
+				@extend %text-copy-bold;
+			}
+
+			&.hack-italic {
+				@extend %text-copy-italic;
+			}
+
+			&.hack-italic-bold {
+				@extend %text-copy-italic-bold;
+			}
+		}
+	}
+}

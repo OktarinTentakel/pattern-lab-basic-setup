@@ -65,7 +65,9 @@ How do I start my own pattern lab based on this?
    - change `PROJECT_NAME` to your project's name
    - change `PROJECT_PREFIX` to a technical prefix for your project,
      which will be used for constants and storage names
-6. Rework demo patterns into something representative for your project.
+6. Maybe base your readme on this file, but be careful to remove all the stuff that is not relevant to your project
+   and adapt the project naming and description
+7. Rework demo patterns into something representative for your project.
 
 
 
@@ -320,12 +322,12 @@ or manually
 we can use dummy images transparently in our templates like this:
 
 ```twig
-{% pattern 'atoms/content-image' with {image : content_image('asset')} %}
+{{ pattern('atoms/content-image', {image : content_image('asset')}) }}
 ```
 
 What we did here:
 
-We wrote twig helpers to automatically handling dummy images transparently.
+We wrote twig helpers to automatically handle dummy images transparently.
 
 Both JSONs are valid, but if the helper function gets a string as the parameter it automatically builds a JSON
 of the second type with the standard format for dummy images and returns this, whereas if the parameter is not a
@@ -334,6 +336,60 @@ string it will be used as-is.
 By doing this, we can define a dummy image type using a unique name and afterwards just reference the image
 by name, while also keeping the possibility to actually use content images and manually defined images at the same place
 without having to alter the template.
+
+To make it even more comfortable, we added this behavior automatically to the "content image" atom as well as to the
+"image" molecule, so you could also just do
+
+```twig
+{{ pattern('atoms/content-image', image) }}
+```
+
+
+
+### Extending the render engine
+
+You may add new functionality to the render engine(s), by adding stuff to the extension files inside the
+`render-engines` folder.
+
+Either use
+- `render-engines/twig/twig-extensions.php` for the Node-based Twig engine (default)
+- `render-engines/twig-php/twig-php-extensions.php` for the PHP-based Twig engine
+- `render-engines/handlebard/handlebars-extensions.php` for the pattern-lab-integrated Handlebars engine
+
+
+
+### Using other template engines
+
+By default, this project uses a Twig renderer based on Node, called ["Twing"](https://twing.nightlycommit.com/),
+but if you'd rather go with the default PHP renderer or Handlebars, that's easy to do as well.
+
+#### TwigPHP
+
+To switch to TwigPHP, you'll have to do these things:
+
+1. Add the PHP CLI in `docker/pattern-lab/dockerfile`.
+   - add the contents of `render-engines/twig-php/install-php-cli.sh` (`apt-get install -y php-common php-cli`)
+     directly before `apt-get clean`
+2. Add the PHP renderer `package.json`
+   - add the dependency in `render-engines/twig-php/package.json` (`"@pattern-lab/engine-twig-php"`)
+     to the `devDependencies`
+3. Add the engine to `patternlab-config.json`
+   - add the engine definition inside `render-engines/twig-php/patternlab-config.json`
+     to the `engines` array inside the project's `patternlab-config.json`
+4. Remove the Node Twig engine (from `patternlab-config.json`, and optionally also from `package.json`)
+
+After these changes, don't forget to `./bin/create.sh` and to `./bin/install.sh` to get the new engine up and running.
+
+
+
+#### Handlebars
+
+Switching to Handlebars is very straightforward, since it is a core dependency of pattern lab and installed and
+active as an engine anyway:
+
+Just remove all other engines from `patternlab-config.json` and you should be good to go.
+
+Optionally, you can remove the Node Twig engine from `package.json` as well.
 
 
 

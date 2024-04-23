@@ -4,7 +4,7 @@
 
 <section class="organism-section{{ style_modifier() }}">
 	{% if headline %}
-		<div class="headline-holder"><h2 class="headline"></h2></div>
+		{{ pattern('atoms/secondary-headline', headline) }}
 	{% endif %}
-	<div class="content"></div>
+	<div class="content">{% block content %}{% endblock %}</div>
 </section>

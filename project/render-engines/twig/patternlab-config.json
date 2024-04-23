@@ -1,0 +1,14 @@
+{
+	"twig" : {
+		"package" : "/project/render-engines/twig/twig-engine.cjs",
+		"fileExtensions" : ["twig"],
+		"extend" : "/project/render-engines/twig/twig-extensions.cjs",
+		"namespaces" : {
+			"atoms" : "./source/_patterns/atoms",
+			"molecules" : "./source/_patterns/molecules",
+			"organisms" : "./source/_patterns/organisms",
+			"templates" : "./source/_patterns/templates",
+			"pages" : "./source/_patterns/pages"
+		}
+	}
+}
