@@ -241,14 +241,6 @@ So, I propose to generally use an alias location for client packages, such as th
 
 
 
-### Extending Twig
-
-If you ever feel the need to add functionality to Twig, you can do so using the `alter-twig.php` file generated
-and used by the pattern lab. It contains an environment to extend the engine with all sorts of things and examples as
-well.
-
-
-
 ### Dummy Images
 
 To create self-documenting pattern images we automatically create dummy images to use in patterns in a default format.

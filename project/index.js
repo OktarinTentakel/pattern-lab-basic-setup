@@ -13,7 +13,7 @@ import outdent from 'outdent';
 import browserSync from 'browser-sync';
 import compression from 'compression';
 import * as esbuildFactory from 'esbuild';
-import * as sassFactory from 'sass';
+import * as sassFactory from 'sass-embedded';
 import postcss from 'postcss';
 import autoprefixer from 'autoprefixer';
 import browserslistToEsbuild from 'browserslist-to-esbuild';
@@ -223,10 +223,11 @@ if( task === 'start' ){
 	+'\n|||'
 	+'\n|||  Access the development server via:'
 	+'\n|||  '+PROTOCOL+'://'+DEVDOMAIN+':'+PORT+'/'
-	+'\n|||'
+	:'\n|||'}${(PROTOCOL === 'https')
+	?'\n|||'
+	+'\n||| (We are using a self-signed SSL certificate,'
+	+'\n||| so you will have to skip a warning in the browser.)'
 	:'\n|||'}
-		|||  (We are using a self-signed SSL certificate,
-		|||  so will have to skip a warning in the browser.)
 		|||
 	\n`;
 }
@@ -368,8 +369,7 @@ function buildStyles(message=null){
 		const
 			entrySource = fs.readFileSync(path.resolve(patternLabConfig.paths.includes.styles, 'index.scss'), 'utf8'),
 			result = sass.compileString(
-				`$__ENVIRONMENT__: ${ENVIRONMENT};\n`
-				+ entrySource,
+				`$__ENVIRONMENT__: ${ENVIRONMENT};\n${entrySource}`,
 				SASS_CONFIG
 			)
 		;
@@ -384,8 +384,7 @@ function buildStyles(message=null){
 		});
 		fs.writeFileSync(
 			path.resolve(targetPath, 'app.css'),
-			transformedResult.css
-			+'\n/*# sourceMappingURL=app.css.map */'
+			`${transformedResult.css}\n/*# sourceMappingURL=app.css.map */`
 		);
 		fs.writeFileSync(
 			path.resolve(targetPath, 'app.css.map'),
