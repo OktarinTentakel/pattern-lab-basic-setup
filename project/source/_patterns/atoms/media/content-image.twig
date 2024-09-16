@@ -40,7 +40,7 @@
 			{% endif %}
 			src="{{ sources[fallback_source] }}"
 			alt="{{ alt }}"
-			loading="{% if loading %}{{ loading }}{% else %}auto{% endif %}"
+			{% if loading %}loading="{{ loading }}"{% endif %}
 			draggable="false"
 		/>
 	{% endif %}

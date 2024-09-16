@@ -34,7 +34,7 @@
 			3840
 		]
 	},
-	"//@logLevel" : "set to quiet, but implemented in index.js, where we route messages to the project's central logger",
+	"//@logLevel" : "set to quiet, but implemented in tasks.js, where we route messages to the project's central logger",
 	"logLevel" : "quiet",
 	"outputFileSuffixes" : {
 		"rendered" : ".rendered",

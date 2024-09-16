@@ -2,7 +2,7 @@
  * ~ATOM INPUT LABEL~
  */
 
-@use 'env/defines' as *;
+@use 'env/defines';
 
 
 
@@ -14,7 +14,7 @@
 
 				margin-left: 0.5ex;
 
-				color: $CICOLOR_SECONDARY_GREEN;
+				color: defines.$CICOLOR_SECONDARY_GREEN;
 			}
 		}
 	}

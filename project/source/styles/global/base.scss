@@ -1,4 +1,4 @@
-@use 'env/defines' as *;
+@use 'env/defines';
 @use 'global/typography';
 
 
@@ -18,7 +18,9 @@ body {
 	@include typography.textconfig-copy();
 	@include typography.font-smoothing-dark-on-light();
 
-	background-color: $CICOLOR_WHITE;
+	& {
+		background-color: defines.$CICOLOR_WHITE;
+	}
 }
 
 body {

@@ -2,7 +2,7 @@
  * ~ATOM TEXT INPUT~
  */
 
-@use 'env/defines' as *;
+@use 'env/defines';
 
 
 
@@ -11,7 +11,7 @@
 
 	padding: 0.75ex 1ex;
 
-	border: 1px solid $CICOLOR_GREY;
+	border: 1px solid defines.$CICOLOR_GREY;
 
 	&:focus {
 		outline: none;

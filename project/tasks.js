@@ -215,20 +215,20 @@ function showStartUpDisplay(task){
 
 if( task === 'start' ){
 	message += outdent `
-		|||  The development server will be available at:
-		|||  ${PROTOCOL}://${HOST}:${PORT}${DEVDOMAIN
+	    |||  The development server will be available at:
+	    |||  ${PROTOCOL}://${HOST}:${PORT}${DEVDOMAIN
 	?'\n|||'
 	+'\n|||  A dev domain has been defined, add this to you hosts file:'
 	+'\n|||  127.0.0.1\t'+DEVDOMAIN
 	+'\n|||'
 	+'\n|||  Access the development server via:'
 	+'\n|||  '+PROTOCOL+'://'+DEVDOMAIN+':'+PORT+'/'
-	:'\n|||'}${(PROTOCOL === 'https')
+	:''}${(PROTOCOL === 'https')
 	?'\n|||'
 	+'\n||| (We are using a self-signed SSL certificate,'
 	+'\n||| so you will have to skip a warning in the browser.)'
-	:'\n|||'}
-		|||
+	:''}
+	    |||
 	\n`;
 }
 
