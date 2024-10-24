@@ -15,12 +15,10 @@ html {
 
 html,
 body {
+	background-color: defines.$CICOLOR_WHITE;
+
 	@include typography.textconfig-copy();
 	@include typography.font-smoothing-dark-on-light();
-
-	& {
-		background-color: defines.$CICOLOR_WHITE;
-	}
 }
 
 body {

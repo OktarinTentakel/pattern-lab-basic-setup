@@ -15,7 +15,7 @@ import compression from 'compression';
 import * as esbuildFactory from 'esbuild';
 import * as sassFactory from 'sass-embedded';
 import postcss from 'postcss';
-import autoprefixer from 'autoprefixer';
+import postcssPresetEnv from 'postcss-preset-env';
 import browserslistToEsbuild from 'browserslist-to-esbuild';
 import Watcher from 'watcher';
 
@@ -378,16 +378,16 @@ function buildStyles(message=null){
 		if( !fs.existsSync(targetPath) ){
 			fs.mkdirSync(targetPath);
 		}
-		const transformedResult = await postcss([autoprefixer]).process(result.css, {from : undefined});
+		const transformedResult = await postcss([postcssPresetEnv()]).process(result.css, {from : undefined});
 		transformedResult.warnings().forEach(warn => {
 			log.warn(warn.toString());
 		});
 		fs.writeFileSync(
-			path.resolve(targetPath, 'app.css'),
+			path.join(targetPath, 'app.css'),
 			`${transformedResult.css}\n/*# sourceMappingURL=app.css.map */`
 		);
 		fs.writeFileSync(
-			path.resolve(targetPath, 'app.css.map'),
+			path.join(targetPath, 'app.css.map'),
 			JSON.stringify(result.sourceMap, null, 2)
 		);
 
@@ -405,7 +405,7 @@ function build(){
 	return Promise.allSettled([
 		buildPatternLab(),
 		buildApp(),
-		buildStyles()
+		buildStyles(),
 	]);
 }
 
@@ -413,7 +413,7 @@ function build(){
 
 function serve(){
 	return task('serving files', async({setStatus}) => {
-		setStatus('intializing');
+		setStatus('initializing');
 
 		await new Promise(resolve => {
 			server.init(BROWSER_SYNC_CONFIG, () => {
@@ -550,7 +550,7 @@ function watch(){
 	return Promise.allSettled([
 		watchPatternLab(),
 		watchApp(),
-		watchStyles()
+		watchStyles(),
 	]);
 }
 
@@ -663,14 +663,14 @@ switch( argv.task ){
 
 		await Promise.allSettled([
 			clearPublic(),
-			removeDependencyGraph()
+			removeDependencyGraph(),
 		]);
 
 		await build();
 
 		await Promise.allSettled([
 			serve(),
-			watch()
+			watch(),
 		]);
 	break;
 
@@ -679,12 +679,12 @@ switch( argv.task ){
 
 		await Promise.allSettled([
 			clearPublic(),
-			removeDependencyGraph()
+			removeDependencyGraph(),
 		]);
 
 		await Promise.allSettled([
 			publishPatternLab(),
-			build()
+			build(),
 		]);
 
 		process.exit(0);

@@ -154,7 +154,7 @@ class TwigEngine {
 			if( patternPath.includes('~') ){
 				patternPath = `${patternPath.split('~')[0]}${this.engineFileExtension}`;
 			} else {
-				patternPath = `${patternPath.substring(0, patternPath.length-5)}${this.engineFileExtension}`;
+				patternPath = `${patternPath.substring(0, patternPath.length - 5)}${this.engineFileExtension}`;
 
 			}
 		}
