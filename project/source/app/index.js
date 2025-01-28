@@ -87,7 +87,6 @@ class App {
 			// Deactivate console logging in production
 			//setLogLevel('warn');
 		} else {
-		}
 			console.info(`###( ${PROJECT_NAME} started )###`);
 			console.info('###> Environment:', __ENVIRONMENT__);
 			console.info('###> Config:');
@@ -110,6 +109,7 @@ class App {
 					{}
 				)
 			, null, 4)}`);
+		}
 
 		this.#initPatterns();
 	}
